@@ -1,0 +1,122 @@
+pre {
+    display: flex;
+    flex-direction: column;
+}
+
+.pizza-ingredients {
+    margin: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .pizza-ingredient {
+    margin: 20px 0 0;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 3px;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.7);
+    padding: 10px 15px 10px 53px;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    flex-basis: 24%;
+    flex-shrink: 1;
+    user-select: none;
+  
+    &:nth-child(4n) {
+      margin-right: 0;
+    }
+  
+    input {
+      border: 0;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+  
+    &--focused {
+      background: rgba(0, 0, 0, 0.15);
+      font-weight: 500;
+    }
+  
+    &--active {
+      background: #1a98e1;
+      color: #fff;
+      font-weight: 500;
+    }
+  
+    &--extra {
+      .pizza-ingredient__extra {
+        transform: rotate(90deg) translate3d(0, 0, 0);
+      }
+    }
+  
+    &__extra {
+      background-color: rgba(0, 0, 0, 0.2);
+      color: #fff;
+      display: block;
+      text-transform: uppercase;
+      width: 50px;
+      font-size: 12px;
+      position: absolute;
+      right: -15px;
+      top: 11px;
+      padding: 2px 0px;
+      text-align: center;
+      transform: rotate(90deg) translate3d(0, -20px, 0);
+      transition: transform 0.1s linear;
+    }
+  
+    &__icon {
+      background: #E6E6E6 no-repeat center center;
+      background-size: 30px;
+      width: 40px;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      &--anchovy {
+        background-image: url(@/assets/images/anchovy.svg);
+      }
+      &--bacon {
+        background-image: url(@/assets/images/bacon.svg);
+      }
+      &--basil {
+        background-image: url(@/assets/images/basil.svg);
+      }
+      &--chili {
+        background-image: url(@/assets/images/chili.svg);
+      }
+      &--mozzarella {
+        background-image: url(@/assets/images/mozzarella.svg);
+      }
+      &--mushroom {
+        background-image: url(@/assets/images/mushroom.svg);
+      }
+      &--olive {
+        background-image: url(@/assets/images/olive.svg);
+      }
+      &--onion {
+        background-image: url(@/assets/images/onion.svg);
+      }
+      &--pepper {
+        background-image: url(@/assets/images/pepper.svg);
+      }
+      &--pepperoni {
+        background-image: url(@/assets/images/pepperoni.svg);
+      }
+      &--sweetcorn {
+        background-image: url(@/assets/images/sweetcorn.svg);
+      }
+      &--tomato {
+        background-image: url(@/assets/images/tomato.svg);
+      }
+    }
+  }
+  
