@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import './App.css'
-import PizzaIngredients from './components/PizzaIngredients/PizzaIngredients'
+import PizzaCreator from './components/PizzaCreator/PizzaCreator'
 
 function App() {
   return (
     <>
-     <PizzaIngredients />
+     <PizzaCreator />
     </>
   )
 }
