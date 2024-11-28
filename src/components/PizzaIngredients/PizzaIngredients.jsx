@@ -45,13 +45,6 @@ const PizzaIngredients = () => {
   return (
     <div>
       <h2>Pizza Ingredients</h2>
-      {/* <pre>
-        selected ingredients{" "}
-        {ingredients.map((ingredient) => (
-          <span key={ingredient.id}>{ingredient.name}</span>
-        ))}
-      </pre> */}
-
       <div className="pizza-ingredients">
         {ingredientsList.map((ingredient) => (
           <label

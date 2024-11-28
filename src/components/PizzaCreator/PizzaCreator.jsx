@@ -4,6 +4,7 @@ import { selectActivePizzaId, selectOrderPizzas } from '../../redux/selectors';
 import './PizzaCreator.scss';
 import { useEffect } from 'react';
 import PizzaIngredients from '../PizzaIngredients/PizzaIngredients';
+import PizzaSize from '../PizzaSize/PizzaSize';
 
 const PizzaCreator = () => {
     const activePizzaId = useSelector((state) => selectActivePizzaId(state));
@@ -17,7 +18,7 @@ const PizzaCreator = () => {
             id: pizzaId,
             size: pizzaSizes.Small,
             name: 'Pizza',
-            price: 1,
+            price: 0,
             quantity: 1,
             ingredients: [],
         };
@@ -61,8 +62,8 @@ const PizzaCreator = () => {
                             </div>
 
                             <div className={activePizzaId === pizza.id ? 'pizza-creator__content--open' : 'pizza-creator__content'}>
-                                {/*<h3> Select the size <span className="required">*</span></h3>
-                                 <pizza-size> </pizza-size> */}
+                                <h3> Select the size <span className="required">*</span></h3>
+                                 <PizzaSize />
 
                                 <h3>Pick your ingredients</h3>
                                 <PizzaIngredients />
