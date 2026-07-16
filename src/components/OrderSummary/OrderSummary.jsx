@@ -1,21 +1,10 @@
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectOrderPizzas, selectOrderTotalAmount } from '../../redux/selectors';
 import './OrderSummary.scss';
 
-const PizzaSize = ({ onGoToOrderForm, onGoToPayment, disabledContiniue }) => {
-    const pizzas = useSelector((state) => selectOrderPizzas(state));
-    const totalPrice = useSelector((state) => selectOrderTotalAmount(state));
-    const [isShowForm, setIsShowForm] = useState(false);
-
-    const goToForm = () => {
-        if (isShowForm) {
-            onGoToPayment();
-        } else {
-            setIsShowForm(true);
-            onGoToOrderForm();
-        }
-    };
+const OrderSummary = () => {
+    const pizzas = useSelector(selectOrderPizzas);
+    const totalPrice = useSelector(selectOrderTotalAmount);
 
     const toTitleCase = (str) => {
         return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
@@ -49,11 +38,8 @@ const PizzaSize = ({ onGoToOrderForm, onGoToPayment, disabledContiniue }) => {
                 </div>
             ))}
             <div className="pizza-summary__total-price">Total: {formatCurrency(totalPrice)}</div>
-            <button onClick={() => goToForm()} className="pizza-summary__button" disabled={disabledContiniue}>
-                Continiue
-            </button>
         </div>
     );
 };
 
-export default PizzaSize;
+export default OrderSummary;

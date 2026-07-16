@@ -16,6 +16,32 @@
     overflow-y: scroll;
     height: 100%;
 }
+
+.order-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+
+.order-header h1 {
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+    font-size: 2rem;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.order-header .back-btn {
+    background: none;
+    cursor: pointer;
+    color: #97c747;
+    border: none;
+    padding: 10px 15px;
+    font-size: 15px;
+    outline: none;
+}
+
 @media (max-width: 768px) {
     .pizza-builder-container {
         width: unset;
