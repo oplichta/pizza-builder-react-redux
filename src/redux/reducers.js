@@ -34,6 +34,9 @@ const orderReducer = (state = initialOrderState, action) => {
                 activePizzaId: action.payload,
             };
         case ADD_PIZZA: {
+            if (state.pizzas.some((pizza) => pizza.id === action.payload.id)) {
+                return state;
+            }
             const pizzaPrice = calculatePizzaPrice(action.payload);
             const updatedPizza = { ...action.payload, price: pizzaPrice };
             const updatedPizzas = [...state.pizzas, updatedPizza];
