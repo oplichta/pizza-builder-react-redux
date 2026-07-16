@@ -1,9 +1,10 @@
-import { ADD_INGREDIENT, ADD_PIZZA, REMOVE_INGREDIENT, SET_ACTIVE_PIZZA, UPDATE_PIZZA_SIZE } from './actions';
+import { ADD_INGREDIENT, ADD_PIZZA, REMOVE_INGREDIENT, SET_ACTIVE_PIZZA, SET_ORDER_DETAILS, UPDATE_PIZZA_SIZE } from './actions';
 
 const initialOrderState = {
     pizzas: [],
     activePizzaId: null,
     totalAmount: 0,
+    orderDetails: null,
 };
 
 const PizzaSize = {
@@ -106,6 +107,11 @@ const orderReducer = (state = initialOrderState, action) => {
                 totalAmount: updatedTotalAmount,
             };
         }
+        case SET_ORDER_DETAILS:
+            return {
+                ...state,
+                orderDetails: action.payload,
+            };
 
         default:
             return state;

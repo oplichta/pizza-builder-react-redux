@@ -1,0 +1,58 @@
+.order-form {
+    background: #fff;
+    margin-bottom: 20px;
+
+    h2 {
+        color: rgba(0, 0, 0, 0.7);
+    }
+}
+
+.order-form .required,
+.order-form .error {
+    color: #e01d3b;
+    font-weight: 700;
+}
+
+.order-form .demo-note {
+    margin: -6px 0 16px;
+    font-size: 12px;
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.55);
+}
+
+.order-form .input {
+    margin: 0 0 20px 0;
+    flex-grow: 1;
+
+    label {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: rgba(0, 0, 0, 0.6);
+        display: block;
+        margin-bottom: 10px;
+
+        .error {
+            float: right;
+            text-transform: none;
+        }
+    }
+
+    input {
+        background: #fff;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.02);
+        border-radius: 2px;
+        border: 1px solid #d7d7e7;
+        font-size: 18px;
+        padding: 10px 15px;
+        outline: none;
+        font-family: inherit;
+        color: rgba(0, 0, 0, 0.8);
+        width: 100%;
+        box-sizing: border-box;
+
+        &:focus {
+            outline: none;
+        }
+    }
+}

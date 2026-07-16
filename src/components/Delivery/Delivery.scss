@@ -1,0 +1,129 @@
+.delivery-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: #fff;
+    position: relative;
+    z-index: 2;
+    flex-grow: 1;
+    box-shadow: 0 1px 54px rgba(0, 0, 0, 0.27);
+    padding: 20px 30px;
+    height: 100%;
+    max-width: 1400px;
+    color: rgba(0, 0, 0, 0.7);
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 1rem;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+}
+
+.loader-container {
+    height: 38px;
+    width: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.timer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.delivery-map {
+    width: 100%;
+    max-width: 960px;
+    height: 480px;
+    border-radius: 8px;
+    margin-top: 16px;
+}
+
+.delivery-map__error {
+    font-size: 0.85rem;
+    color: #9a2f17;
+    margin-top: 8px;
+}
+
+.delivered-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pizza-size {
+    &__pizza {
+        background: #fedb79;
+        border: 2px solid #deb989;
+        height: 60px;
+        width: 60px;
+        border-radius: 50%;
+        position: relative;
+
+        &__line {
+            background: #fff;
+            width: 2px;
+            height: 62px;
+            position: absolute;
+            left: 27px;
+            transform: rotate(0deg);
+            transform-origin: center;
+            top: -3px;
+
+            &:before,
+            &:after {
+                width: 5px;
+                height: 5px;
+                border-radius: 50%;
+                content: ' ';
+                position: absolute;
+                background: #9a2f17;
+            }
+
+            &:before {
+                left: 18px;
+                top: 20px;
+            }
+
+            &:after {
+                right: 18px;
+                bottom: 20px;
+            }
+        }
+
+        &--large {
+            .pizza-size__pizza__line {
+                &:nth-child(1) {
+                    transform: rotate(0deg);
+                }
+                &:nth-child(2) {
+                    transform: rotate(45deg);
+                }
+                &:nth-child(3) {
+                    transform: rotate(90deg);
+                }
+                &:nth-child(4) {
+                    transform: rotate(135deg);
+                }
+            }
+        }
+    }
+}

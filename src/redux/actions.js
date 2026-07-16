@@ -3,6 +3,7 @@ export const SET_ACTIVE_PIZZA = 'SET_ACTIVE_PIZZA';
 export const ADD_INGREDIENT = 'ADD_INGREDIENT';
 export const REMOVE_INGREDIENT = 'REMOVE_INGREDIENT';
 export const UPDATE_PIZZA_SIZE = 'UPDATE_PIZZA_SIZE';
+export const SET_ORDER_DETAILS = 'SET_ORDER_DETAILS';
 
 export const addPizza = (pizza) => ({
     type: ADD_PIZZA,
@@ -26,4 +27,9 @@ export const removeIngredient = (ingredientId) => ({
 export const updatePizzaSize = (size) => ({
     type: UPDATE_PIZZA_SIZE,
     payload: size,
+});
+
+export const setOrderDetails = (details) => ({
+    type: SET_ORDER_DETAILS,
+    payload: details,
 });
