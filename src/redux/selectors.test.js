@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { selectIngredientsOfPizza } from './selectors';
+import { selectIngredientsOfPizza, selectSizeOfActivePizza } from './selectors';
 
 describe('selectIngredientsOfPizza selector', () => {
     it('should return the ingredients from the state', () => {
@@ -56,5 +56,25 @@ describe('selectIngredientsOfPizza selector', () => {
         const expectedIngredients = [];
 
         expect(selectIngredientsOfPizza(state)).toEqual(expectedIngredients);
+    });
+});
+
+describe('selectSizeOfActivePizza selector', () => {
+    it('should return the size of the active pizza', () => {
+        const state = {
+            activePizzaId: 0,
+            pizzas: [{ id: 0, size: 'large', ingredients: [] }],
+        };
+
+        expect(selectSizeOfActivePizza(state)).toBe('large');
+    });
+
+    it('should return null if the active pizza does not exist', () => {
+        const state = {
+            activePizzaId: 1,
+            pizzas: [{ id: 0, size: 'large', ingredients: [] }],
+        };
+
+        expect(selectSizeOfActivePizza(state)).toBeNull();
     });
 });

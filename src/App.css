@@ -3,18 +3,20 @@
     height: 100%;
     display: flex;
     width: 100%;
+    background: #2e3744;
 }
 
 .pizza-creator-container {
+    box-sizing: border-box;
     background: #fff;
     position: relative;
     z-index: 2;
     flex-grow: 1;
-    margin-left: 340px;
+    align-self: flex-start;
     box-shadow: 0 1px 54px rgba(0, 0, 0, 0.27);
     padding: 20px 30px;
-    overflow-y: scroll;
-    height: 100%;
+    overflow-y: auto;
+    max-height: 100%;
 }
 
 .order-header {

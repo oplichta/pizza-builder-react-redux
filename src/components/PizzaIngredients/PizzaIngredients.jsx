@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { addIngredient, removeIngredient } from "../../redux/actions";
+import { addIngredient, removeIngredient } from "../../redux/orderSlice";
 import { selectIngredientsOfPizza } from "../../redux/selectors";
 import "./PizzaIngredients.scss";
 

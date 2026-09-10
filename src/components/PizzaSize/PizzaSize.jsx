@@ -1,11 +1,11 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './PizzaSize.scss';
-import { updatePizzaSize } from '../../redux/actions';
-import { useState } from 'react';
+import { updatePizzaSize } from '../../redux/orderSlice';
+import { selectSizeOfActivePizza } from '../../redux/selectors';
 
 const PizzaSize = () => {
     const dispatch = useDispatch();
-    const [selectedType, setSelectedType] = useState(null);
+    const selectedType = useSelector(selectSizeOfActivePizza);
 
     const sizes = [
         { type: 'small', centimeters: 30 },
@@ -14,7 +14,6 @@ const PizzaSize = () => {
     ];
 
     const onChange = (size) => {
-        setSelectedType(size);
         dispatch(updatePizzaSize(size));
     };
 

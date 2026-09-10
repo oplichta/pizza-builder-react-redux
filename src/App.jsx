@@ -5,7 +5,7 @@ import PizzaCreator from './components/PizzaCreator/PizzaCreator';
 import PizzaPreview from './components/PizzaPreview/PizzaPreview';
 import OrderSummary from './components/OrderSummary/OrderSummary';
 import OrderForm from './components/OrderForm/OrderForm';
-import { setOrderDetails } from './redux/actions';
+import { setOrderDetails } from './redux/orderSlice';
 
 // Lazy-loaded: pulls in mapbox-gl, which is too heavy to bundle into the initial chunk.
 const Delivery = lazy(() => import('./components/Delivery/Delivery'));
@@ -41,7 +41,7 @@ function App() {
                         <PizzaCreator />
                         <OrderSummary />
                         <button onClick={goToOrder} className="pizza-summary__button">
-                            Continiue
+                            Continue
                         </button>
                     </div>
                 </div>
@@ -61,7 +61,7 @@ function App() {
                         <OrderForm onFormChange={handleOrderFormChange} />
                         <OrderSummary />
                         <button onClick={goToDelivery} className="pizza-summary__button" disabled={!orderForm.isValid}>
-                            Continiue
+                            Continue
                         </button>
                     </div>
                 </div>
