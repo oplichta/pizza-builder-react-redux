@@ -263,13 +263,11 @@ const Delivery = () => {
             {delivered && (
                 <div className="delivered-container">
                     <h1>Your order is delivered. Enjoy your meal!</h1>
-                    <div className="pizza-size__plate">
-                        <div className="pizza-size__pizza pizza-size__pizza--large">
-                            <div className="pizza-size__pizza__line"></div>
-                            <div className="pizza-size__pizza__line"></div>
-                            <div className="pizza-size__pizza__line"></div>
-                            <div className="pizza-size__pizza__line"></div>
-                        </div>
+                    <div className="pizza-size__pizza pizza-size__pizza--large">
+                        <div className="pizza-size__pizza__line"></div>
+                        <div className="pizza-size__pizza__line"></div>
+                        <div className="pizza-size__pizza__line"></div>
+                        <div className="pizza-size__pizza__line"></div>
                     </div>
                 </div>
             )}

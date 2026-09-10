@@ -2,6 +2,7 @@
 .pizza-builder-container {
     height: 100%;
     display: flex;
+    justify-content: center;
     width: 100%;
     background: #2e3744;
 }

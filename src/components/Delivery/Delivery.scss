@@ -50,8 +50,8 @@
 
 .delivery-map {
     width: 100%;
-    max-width: 960px;
-    height: 480px;
+    max-width: 1100px;
+    height: 600px;
     border-radius: 8px;
     margin-top: 16px;
 }
@@ -67,6 +67,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 24px;
 }
 
 .pizza-size {
