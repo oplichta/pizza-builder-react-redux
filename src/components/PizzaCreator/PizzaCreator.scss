@@ -50,6 +50,9 @@
       cursor: pointer;
       color: #E31736;
       font-size: 14px;
+      background: none;
+      border: none;
+      outline: none;
       &:hover {
         background: rgba(0, 0, 0, 0.05);
       }

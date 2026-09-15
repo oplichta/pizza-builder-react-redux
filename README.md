@@ -7,6 +7,8 @@ management with Redux Toolkit and integrating a third-party API.
 
 🔗 **Live demo:** https://oplichta.github.io/pizza-builder-react-redux/
 
+![The pizza builder, mid-order](docs/screenshots/builder.png)
+
 ## Features
 
 - Build multiple pizzas in one order — choose a size and toppings for each,
@@ -17,6 +19,8 @@ management with Redux Toolkit and integrating a third-party API.
   Directions API) and animated live on the map
 - Code-splitting: the map module (mapbox-gl) is lazy-loaded (`React.lazy`)
   so it doesn't bloat the initial bundle
+
+![Delivery tracking](docs/screenshots/delivery.gif)
 
 ## Tech stack
 
