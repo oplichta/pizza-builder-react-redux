@@ -1,0 +1,95 @@
+import './App.css';
+import { useState, useCallback, lazy, Suspense } from 'react';
+import { useAppDispatch } from './redux/hooks';
+import { setOrderDetails } from './redux/orderSlice';
+import type { OrderDetails } from './redux/types';
+import PizzaCreator from './components/PizzaCreator/PizzaCreator';
+import PizzaPreview from './components/PizzaPreview/PizzaPreview';
+import OrderSummary from './components/OrderSummary/OrderSummary';
+import OrderForm from './components/OrderForm/OrderForm';
+
+// Lazy-loaded: pulls in mapbox-gl, which is too heavy to bundle into the initial chunk.
+const Delivery = lazy(() => import('./components/Delivery/Delivery'));
+
+const STEP = {
+  BUILDER: 'builder',
+  ORDER: 'order',
+  DELIVERY: 'delivery',
+} as const;
+
+type Step = (typeof STEP)[keyof typeof STEP];
+
+interface OrderFormState {
+  formData: OrderDetails;
+  isValid: boolean;
+}
+
+function App() {
+  const dispatch = useAppDispatch();
+  const [step, setStep] = useState<Step>(STEP.BUILDER);
+  const [orderForm, setOrderForm] = useState<OrderFormState>({
+    formData: { name: '', email: '', address: '', postcode: '', phone: '' },
+    isValid: false,
+  });
+
+  const handleOrderFormChange = useCallback(
+    (data: { formData: OrderDetails; isValid: boolean }) => setOrderForm(data),
+    [],
+  );
+
+  const goToOrder = () => setStep(STEP.ORDER);
+  const goToBuilder = () => setStep(STEP.BUILDER);
+
+  const goToDelivery = () => {
+    dispatch(setOrderDetails(orderForm.formData));
+    setStep(STEP.DELIVERY);
+  };
+
+  return (
+    <>
+      {step === STEP.BUILDER && (
+        <div className="pizza-builder-container">
+          <PizzaPreview />
+
+          <div className="pizza-creator-container">
+            <PizzaCreator />
+            <OrderSummary />
+            <button onClick={goToOrder} className="pizza-summary__button">
+              Continue
+            </button>
+          </div>
+        </div>
+      )}
+
+      {step === STEP.ORDER && (
+        <div className="pizza-builder-container">
+          <PizzaPreview />
+
+          <div className="pizza-creator-container">
+            <div className="order-header">
+              <button className="back-btn" type="button" onClick={goToBuilder}>
+                Go back
+              </button>
+              <h1>Place Your Order</h1>
+            </div>
+            <OrderForm onFormChange={handleOrderFormChange} />
+            <OrderSummary />
+            <button onClick={goToDelivery} className="pizza-summary__button" disabled={!orderForm.isValid}>
+              Continue
+            </button>
+          </div>
+        </div>
+      )}
+
+      {step === STEP.DELIVERY && (
+        <div className="pizza-builder-container">
+          <Suspense fallback={null}>
+            <Delivery />
+          </Suspense>
+        </div>
+      )}
+    </>
+  );
+}
+
+export default App;

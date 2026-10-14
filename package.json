@@ -7,16 +7,18 @@
   "scripts": {
     "dev": "vite",
     "start": "vite",
-    "build": "vite build",
+    "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "typecheck": "tsc -b"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.12.0",
     "mapbox-gl": "^3.26.0",
+    "nanoid": "^6.0.2",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-redux": "^9.3.0"
@@ -25,6 +27,7 @@
     "@eslint/js": "^9.13.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.2",
+    "@types/node": "^26.6.5",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.3",
@@ -37,6 +40,8 @@
     "jsdom": "^29.1.1",
     "prettier": "^3.3.3",
     "sass-embedded": "^1.100.0",
+    "typescript": "~5.9.0",
+    "typescript-eslint": "^8.71.2",
     "vite": "^8.1.4",
     "vitest": "^4.1.10"
   },

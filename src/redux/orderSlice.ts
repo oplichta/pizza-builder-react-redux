@@ -1,4 +1,8 @@
-import { createSlice, nanoid } from '@reduxjs/toolkit';
+import { nanoid } from 'nanoid'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import type { OrderState, Pizza, Ingredient, PizzaSizeValue, OrderDetails } from './types'
+
+
 
 const PizzaSize = {
     Small: 'small',
@@ -12,15 +16,15 @@ const prices = {
     [PizzaSize.Large]: { base: 16.99, ingredients: 1.29 },
 };
 
-const calculatePizzaPrice = (pizza) => {
+const calculatePizzaPrice = (pizza: Pizza) => {
     const basePrice = prices[pizza.size]?.base || 0;
     const ingredientsPrice = pizza.ingredients.reduce((sum, item) => sum + (prices[pizza.size]?.ingredients || 0) * item.quantity, 0);
     return basePrice + ingredientsPrice;
 };
 
-const calculateTotalAmount = (pizzas) => pizzas.reduce((sum, pizza) => sum + pizza.price * pizza.quantity, 0);
+const calculateTotalAmount = (pizzas: Pizza[]) => pizzas.reduce((sum, pizza) => sum + pizza.price * pizza.quantity, 0);
 
-const initialState = {
+const initialState: OrderState = {
     pizzas: [],
     activePizzaId: null,
     totalAmount: 0,
@@ -31,23 +35,21 @@ const orderSlice = createSlice({
     name: 'order',
     initialState,
     reducers: {
-        setActivePizza: (state, action) => {
+        setActivePizza: (state: OrderState, action: PayloadAction<string | null>) => {
             state.activePizzaId = action.payload;
         },
         addPizza: {
-            reducer: (state, action) => {
-                if (state.pizzas.some((pizza) => pizza.id === action.payload.id)) {
-                    return;
-                }
-                state.pizzas.push({ ...action.payload, price: calculatePizzaPrice(action.payload) });
-                state.activePizzaId = action.payload.id;
+            reducer: (state: OrderState, action: PayloadAction<Omit<Pizza, 'id'>>) => {
+                const pizza = { ...action.payload, id: nanoid() };
+                state.pizzas.push({ ...pizza, price: calculatePizzaPrice(pizza) });
+                state.activePizzaId = pizza.id;
                 state.totalAmount = calculateTotalAmount(state.pizzas);
             },
             // ID is generated here (not by the caller) so it can never collide with an
             // existing or previously-removed pizza's id.
-            prepare: (pizza) => ({ payload: { ...pizza, id: nanoid() } }),
+            prepare: (pizza) => ({ payload: pizza }),
         },
-        removePizza: (state, action) => {
+        removePizza: (state: OrderState, action: PayloadAction<string>) => {
             const pizzaId = action.payload;
             state.pizzas = state.pizzas.filter((pizza) => pizza.id !== pizzaId);
             state.totalAmount = calculateTotalAmount(state.pizzas);
@@ -55,7 +57,7 @@ const orderSlice = createSlice({
                 state.activePizzaId = state.pizzas[0]?.id ?? null;
             }
         },
-        addIngredient: (state, action) => {
+        addIngredient: (state: OrderState, action: PayloadAction<Ingredient>) => {
             const pizza = state.pizzas.find((pizza) => pizza.id === state.activePizzaId);
             if (!pizza) {
                 return;
@@ -64,7 +66,7 @@ const orderSlice = createSlice({
             pizza.price = calculatePizzaPrice(pizza);
             state.totalAmount = calculateTotalAmount(state.pizzas);
         },
-        removeIngredient: (state, action) => {
+        removeIngredient: (state: OrderState, action: PayloadAction<number>) => {
             const pizza = state.pizzas.find((pizza) => pizza.id === state.activePizzaId);
             if (!pizza) {
                 return;
@@ -73,7 +75,7 @@ const orderSlice = createSlice({
             pizza.price = calculatePizzaPrice(pizza);
             state.totalAmount = calculateTotalAmount(state.pizzas);
         },
-        updatePizzaSize: (state, action) => {
+        updatePizzaSize: (state: OrderState, action: PayloadAction<PizzaSizeValue>) => {
             const pizza = state.pizzas.find((pizza) => pizza.id === state.activePizzaId);
             if (!pizza) {
                 return;
@@ -82,7 +84,7 @@ const orderSlice = createSlice({
             pizza.price = calculatePizzaPrice(pizza);
             state.totalAmount = calculateTotalAmount(state.pizzas);
         },
-        setOrderDetails: (state, action) => {
+        setOrderDetails: (state: OrderState, action: PayloadAction<OrderDetails | null>) => {
             state.orderDetails = action.payload;
         },
     },

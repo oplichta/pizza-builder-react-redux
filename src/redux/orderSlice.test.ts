@@ -44,18 +44,6 @@ describe('orderSlice reducer', () => {
         expect(state.pizzas[0].id).not.toBe(firstId);
     });
 
-    it('ignores an addPizza action whose id already exists in state', () => {
-        // The public addPizza() action creator always generates a fresh id via its
-        // prepare callback, so a collision can only be simulated by dispatching a raw
-        // action directly — this is what the reducer's own defensive check guards against.
-        const pizza = { ...buildPizza(), id: 'fixed-id' };
-        const stateWithPizza = orderReducer(initialState, { type: addPizza.type, payload: pizza });
-        const state = orderReducer(stateWithPizza, { type: addPizza.type, payload: { ...pizza, size: 'large' } });
-
-        expect(state.pizzas).toHaveLength(1);
-        expect(state.pizzas[0].size).toBe('small');
-    });
-
     it('sums prices of multiple pizzas into totalAmount', () => {
         let state = orderReducer(initialState, addPizza(buildPizza({ size: 'small' })));
         state = orderReducer(state, addPizza(buildPizza({ size: 'medium' })));
@@ -64,8 +52,8 @@ describe('orderSlice reducer', () => {
     });
 
     it('sets the active pizza id', () => {
-        const state = orderReducer(initialState, setActivePizza(3));
-        expect(state.activePizzaId).toBe(3);
+        const state = orderReducer(initialState, setActivePizza('3'));
+        expect(state.activePizzaId).toBe('3');
     });
 
     it('removes a pizza and recalculates totalAmount', () => {
@@ -148,7 +136,7 @@ describe('orderSlice reducer', () => {
     });
 
     it('stores order details', () => {
-        const details = { name: 'Jan Kowalski', email: 'jan@example.com' };
+        const details = { name: 'Jan Kowalski', email: 'jan@example.com', address: 'ul. Przykładowa 1', postcode: '00-001', phone: '+48 000 000 000' };
         const state = orderReducer(initialState, setOrderDetails(details));
         expect(state.orderDetails).toEqual(details);
     });
